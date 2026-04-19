@@ -5,38 +5,141 @@
   <title>Contacto - CinePlus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CinePlus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="renta.html">Rentar</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container py-5">
     <h2 class="mb-4">Contáctanos</h2>
     <form id="form-contacto" novalidate>
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="nombre" required>
+        <div class="invalid-feedback"></div>
       </div>
       <div class="mb-3">
         <label for="correo" class="form-label">Correo electrónico</label>
         <input type="email" class="form-control" id="correo" required>
+        <div class="invalid-feedback"></div>
       </div>
       <div class="mb-3">
         <label for="mensaje" class="form-label">Mensaje</label>
         <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+        <div class="invalid-feedback"></div>
       </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
-      <div id="alerta" class="alert alert-success mt-3 d-none">Mensaje enviado con éxito.</div>
+      <small id="contador" class="text-muted">0 / 50 caracteres</small>
     </form>
   </div>
 
+  <footer class="bg-dark text-center text-white py-3">
+    <small>&copy; 2024 CinePlus. Todos los derechos reservados.</small>
+  </footer>
+
+  <!-- Modal de confirmación -->
+  <div class="modal fade" id="modalConfirmacion" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4">
+
+        <h4 class="mb-3">¡Mensaje enviado!</h4>
+        <p class="mb-4">Nos pondremos en contacto contigo pronto.</p>
+
+        <div>
+          <button type="button" class="btn btn-primary" id="btn-cerrar">
+            Ir al Inicio
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     $('#form-contacto').on('submit', function (e) {
       e.preventDefault();
-      if (this.checkValidity()) {
-        $('#alerta').removeClass('d-none').hide().fadeIn();
-        setTimeout(() => $('#alerta').fadeOut(), 3000);
-        this.reset();
+
+      let valido = true;
+
+      // limpiar errores previos
+      $('.form-control').removeClass('is-invalid');
+
+      const nombre = $('#nombre').val().trim();
+      const correo = $('#correo').val().trim();
+      const mensaje = $('#mensaje').val().trim();
+
+      // validar nombre
+      if (nombre === '') {
+        mostrarError('#nombre', 'El nombre es obligatorio');
+        valido = false;
       }
+
+      // validar correo
+      const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (correo === '') {
+        mostrarError('#correo', 'El correo es obligatorio');
+        valido = false;
+      } else if (!regexCorreo.test(correo)) {
+        mostrarError('#correo', 'Ingresa un correo válido');
+        valido = false;
+      }
+
+      // validar mensaje
+      if (mensaje === '') {
+        mostrarError('#mensaje', 'El mensaje es obligatorio');
+        valido = false;
+      } else if (mensaje.length < 20 || mensaje.length > 50) {
+        mostrarError('#mensaje', 'El mensaje debe tener entre 20 y 50 caracteres');
+        valido = false;
+      }
+
+      // si todo está correcto
+      if (valido) {
+        // Mostrar modal de confirmación
+        const modal = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
+        modal.show();
+
+        // limpiar formulario
+        this.reset();
+        }
+      });
+
+    // Contador de caracteres para el mensaje
+    $('#mensaje').on('input', function () {
+      const longitud = $(this).val().length;
+      $('#contador').text(`${longitud} / 50 caracteres`);
     });
+
+    $('#modalConfirmacion').on('hidden.bs.modal', function () {
+      window.location.href = "../index.html";
+    });
+
+    $('#btn-cerrar').on('click', function () {
+      const modal = bootstrap.Modal.getInstance(document.getElementById('modalConfirmacion'));
+      modal.hide();
+    });
+
+    function mostrarError(selector, mensaje) {
+      const input = $(selector);
+      input.addClass('is-invalid');
+      input.next('.invalid-feedback').text(mensaje);
+    }
   </script>
 </body>
 </html>

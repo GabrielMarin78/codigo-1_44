@@ -4,13 +4,27 @@
     <meta charset="UTF-8" />
     <title>Detalle de Película</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CinePlus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="renta.html">Rentar</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div class="container py-5" id="detalle-pelicula">
       <div class="text-center mb-4">
         <h2 id="titulo" class="mb-3"></h2>
@@ -50,10 +64,19 @@
         </div>
       </div>
 
+      <hr>
+      <h4 class="mb-3">Reseñas de usuarios</h4>
+      <div id="promedio-calificacion" class="mb-3 fw-bold"></div>
+      <div id="lista-reseñas"></div>
+
       <div class="text-center">
         <a href="../index.html" class="btn btn-secondary">Volver al inicio</a>
       </div>
     </div>
+
+    <footer class="bg-dark text-center text-white py-3">
+      <small>&copy; 2024 CinePlus. Todos los derechos reservados.</small>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -112,6 +135,87 @@
           },
         });
 
+        $.ajax({
+          url: "../data/reseñas.json",
+          method: "GET",
+          dataType: "json",
+          success: function (reseñas) {
+
+            const reseñasPeli = reseñas.filter(r => r.peliculaId == id);
+
+            let promedioHTML = "";
+
+            if (reseñasPeli.length > 0) {
+
+              let suma = 0;
+
+              reseñasPeli.forEach(r => {
+                suma += r.calificacion;
+              });
+
+              let promedio = suma / reseñasPeli.length;
+
+              let estrellasPromedio = "";
+
+              for (let i = 1; i <= 5; i++) {
+                if (i <= Math.round(promedio)) {
+                  estrellasPromedio += `<i class="bi bi-star-fill text-warning"></i>`;
+                } else {
+                  estrellasPromedio += `<i class="bi bi-star text-warning"></i>`;
+                }
+              }
+
+              promedioHTML = `
+                <div>
+                  ${estrellasPromedio} (${promedio.toFixed(1)} / 5)
+                </div>
+              `;
+            } else {
+              promedioHTML = `<p class="text-muted">Sin calificaciones</p>`;
+            }
+
+            $("#promedio-calificacion").html(promedioHTML);
+
+            let htmlReseñas = "";
+
+            reseñasPeli.forEach(function (r) {
+
+              let estrellas = "";
+
+              for (let i = 1; i <= 5; i++) {
+                if (i <= r.calificacion) {
+                  estrellas += `<i class="bi bi-star-fill text-warning"></i>`;
+                } else {
+                  estrellas += `<i class="bi bi-star text-warning"></i>`;
+                }
+              }
+
+              htmlReseñas += `
+                <div class="card mb-3 shadow-sm">
+                  <div class="card-body">
+                    <h6 class="card-subtitle mb-1 text-muted">${r.autor}</h6>
+                    <p class="card-text">${r.comentario}</p>
+                    <div>${estrellas}</div>
+                  </div>
+                </div>
+              `;
+            });
+
+            if (htmlReseñas === "") {
+              htmlReseñas = `<p class="text-muted">No hay reseñas para esta película.</p>`;
+            }
+
+            $("#lista-reseñas").html(htmlReseñas);
+          },
+          error: function () {
+            $("#lista-reseñas").html(`
+              <div class="alert alert-warning">
+                No se pudieron cargar las reseñas.
+              </div>
+            `);
+          }
+        });
+
         function mostrarError() {
           $("#detalle-pelicula").html(`
           <div class="alert alert-danger text-center" role="alert">
@@ -124,5 +228,6 @@
         }
       });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

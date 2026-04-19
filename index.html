@@ -5,13 +5,16 @@
   <title>Películas en Cartelera</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">CinePlus</a>
-      <div class="collapse navbar-collapse">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="pages/renta.html">Rentar</a></li>
@@ -43,6 +46,47 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- Modal Trailer -->
+  <div class="modal fade" id="modalTrailer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content bg-dark text-white">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Tráiler</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body p-0">
+          <div class="ratio ratio-16x9">
+            <iframe id="trailerFrame"
+                    src=""
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- Modal de bienvenida -->
+  <div class="modal fade" id="modalBienvenida" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+
+        <div class="modal-body">
+          <h4>Bienvenido a CinePlus</h4>
+          <p>Disfruta los mejores estrenos y renta tus películas favoritas.</p>
+          <button class="btn btn-primary" data-bs-dismiss="modal">Comenzar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

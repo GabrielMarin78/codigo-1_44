@@ -5,233 +5,253 @@
   <title>Renta de Películas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="container py-5">
-  <h2 class="text-center mb-4">Renta de Películas</h2>
-
-  <form id="form-renta">
-
-<!-- Cliente -->
-<div class="mb-3">
-  <label class="form-label">Nombre del cliente</label>
-  <input type="text" id="cliente" class="form-control" required>
-</div>
-
-<!-- Películas -->
-<div class="mb-3">
-  <label class="form-label">Selecciona películas</label>
-  <div id="peliculas" class="form-control" style="height:auto;"></div>
-  <div id="error-peliculas" class="text-danger mt-1" style="display:none;">
-    Debes seleccionar al menos una película
-  </div>
-</div>
-
-<!-- Días -->
-<div class="mb-3">
-  <label class="form-label">Días de renta</label>
-  <input type="number" id="dias" class="form-control" min="1" value="1" required>
-</div>
-
-<!-- Pago -->
-<div class="mb-3">
-  <label class="form-label">Forma de pago</label>
-  <select id="pago" class="form-select" required>
-    <option value="Efectivo">Efectivo</option>
-    <option value="Tarjeta">Tarjeta</option>
-    <option value="Transferencia">Transferencia</option>
-  </select>
-</div>
-
-<button type="submit" class="btn btn-primary">Enviar</button>
-
-  </form>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="modalResumen" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header justify-content-center position-relative">
-        <h5 class="modal-title text-center fw-bold">Resumen de Renta</h5>
-        <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"></button>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CinePlus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="renta.html">Rentar</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
       </div>
-      <div class="modal-body" id="resumen"></div>
-      <div class="modal-footer justify-content-center gap-4">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Modificar</button>
-        <button type="button" class="btn btn-success" id="btn-confirmar">Confirmar</button>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Renta de Películas</h2>
+
+    <form id="form-renta">
+
+  <!-- Cliente -->
+  <div class="mb-3">
+    <label class="form-label">Nombre del cliente</label>
+    <input type="text" id="cliente" class="form-control" required>
+  </div>
+
+  <!-- Películas -->
+  <div class="mb-3">
+    <label class="form-label">Selecciona películas</label>
+    <div id="peliculas" class="form-control" style="height:auto;"></div>
+    <div id="error-peliculas" class="text-danger mt-1" style="display:none;">
+      Debes seleccionar al menos una película
+    </div>
+  </div>
+
+  <!-- Días -->
+  <div class="mb-3">
+    <label class="form-label">Días de renta</label>
+    <input type="number" id="dias" class="form-control" min="1" value="1" required>
+  </div>
+
+  <!-- Pago -->
+  <div class="mb-3">
+    <label class="form-label">Forma de pago</label>
+    <select id="pago" class="form-select" required>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Tarjeta">Tarjeta</option>
+      <option value="Transferencia">Transferencia</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+
+    </form>
+  </div>
+
+  <footer class="bg-dark text-center text-white py-3">
+    <small>&copy; 2024 CinePlus. Todos los derechos reservados.</small>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalResumen" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center position-relative">
+          <h5 class="modal-title text-center fw-bold">Resumen de Renta</h5>
+          <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="resumen"></div>
+        <div class="modal-footer justify-content-center gap-4">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Modificar</button>
+          <button type="button" class="btn btn-success" id="btn-confirmar">Confirmar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Modal de confirmación -->
-<div class="modal fade" id="modalConfirmacion" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-4">
+  <!-- Modal de confirmación -->
+  <div class="modal fade" id="modalConfirmacion" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4">
 
-      <h4 class="mb-3">¡Solicitud procesada!</h4>
-      <p class="mb-4">Tu renta ha sido registrada correctamente.</p>
+        <h4 class="mb-3">¡Solicitud procesada!</h4>
+        <p class="mb-4">Tu renta ha sido registrada correctamente.</p>
 
-      <div>
-        <button type="button" class="btn btn-primary" id="btn-ir-inicio">
-          Ir al inicio
-        </button>
+        <div>
+          <button type="button" class="btn btn-primary" id="btn-ir-inicio">
+            Ir al Inicio
+          </button>
+        </div>
+
       </div>
-
     </div>
   </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-$(document).ready(function () {
+  <script>
+  $(document).ready(function () {
 
-  let peliculasData = [];
+    let peliculasData = [];
 
-  // Cargar películas
-  const urlParams = new URLSearchParams(window.location.search);
-  const idSeleccionado = urlParams.get("id");
+    // Cargar películas
+    const urlParams = new URLSearchParams(window.location.search);
+    const idSeleccionado = urlParams.get("id");
 
-  $.ajax({
-    url: "../data/peliculas.json",
-    method: "GET",
-    dataType: "json",
-    success: function (data) {
-      peliculasData = data;
+    $.ajax({
+      url: "../data/peliculas.json",
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        peliculasData = data;
 
-      data.forEach(p => {
-        const checked = p.id == idSeleccionado ? "checked" : "";
+        data.forEach(p => {
+          const checked = p.id == idSeleccionado ? "checked" : "";
 
-        const hoy = new Date();
-        const fechaEstreno = new Date(p.estreno);
+          const hoy = new Date();
+          const fechaEstreno = new Date(p.estreno);
+          const diferenciaDias = (hoy - fechaEstreno) / (1000 * 60 * 60 * 24);
+
+          let precio;
+          let etiqueta;
+
+          if (diferenciaDias <= 30) {
+            precio = p.precios.estreno;
+            etiqueta = "Estreno";
+          } else {
+            precio = p.precios.normal;
+            etiqueta = "Regular";
+          }
+
+          $("#peliculas").append(`
+            <div class="form-check">
+              <input class="form-check-input pelicula-check" type="checkbox" value="${p.id}" ${checked}>
+              <label class="form-check-label">
+                ${p.titulo} - $${precio.toFixed(2)} (${etiqueta})
+              </label>
+            </div>
+          `);
+        });
+
+        // Muestra el error de no tener película seleccionada
+        if (!idSeleccionado) {
+          $("#error-peliculas").show();
+          $("#peliculas").addClass("is-invalid");
+        }
+      }
+    });
+
+    // Envío del formulario
+    $("#form-renta").submit(function (e) {
+      e.preventDefault();
+
+      const cliente = $("#cliente").val();
+      const ids = [];
+      $(".pelicula-check:checked").each(function () {
+        ids.push($(this).val());
+      })
+      if (ids.length === 0) {
+        $("#error-peliculas").show();
+        $("#peliculas").addClass("is-invalid");
+        return;
+      } else {
+        $("#error-peliculas").hide();
+        $("#peliculas").removeClass("is-invalid");
+      }
+      const dias = parseInt($("#dias").val());
+      const pago = $("#pago").val();
+
+      let total = 0;
+      let listaPeliculas = "";
+
+      const hoy = new Date();
+
+      if (ids.length === 0) {
+        alert("Debes seleccionar al menos una película");
+        return;
+      }
+
+      ids.forEach(id => {
+        const peli = peliculasData.find(p => p.id == id);
+
+        const fechaEstreno = new Date(peli.estreno);
         const diferenciaDias = (hoy - fechaEstreno) / (1000 * 60 * 60 * 24);
 
         let precio;
-        let etiqueta;
 
         if (diferenciaDias <= 30) {
-          precio = p.precios.estreno;
-          etiqueta = "Estreno";
+          precio = peli.precios.estreno;
         } else {
-          precio = p.precios.normal;
-          etiqueta = "Regular";
+          precio = peli.precios.normal;
         }
 
-        $("#peliculas").append(`
-          <div class="form-check">
-            <input class="form-check-input pelicula-check" type="checkbox" value="${p.id}" ${checked}>
-            <label class="form-check-label">
-              ${p.titulo} - $${precio.toFixed(2)} (${etiqueta})
-            </label>
-          </div>
-        `);
+        total += precio * dias;
+
+        listaPeliculas += `<li>${peli.titulo} - $${precio.toFixed(2)}</li>`;
       });
 
-      // Muestra el error de no tener película seleccionada
-      if (!idSeleccionado) {
+      $("#resumen").html(`
+        <p><strong>Cliente:</strong> ${cliente}</p>
+        <p><strong>Forma de pago:</strong> ${pago}</p>
+        <p><strong>Días:</strong> ${dias}</p>
+        <p><strong>Películas:</strong></p>
+        <ul>${listaPeliculas}</ul>
+        <hr>
+        <h5>Total a pagar: $${total.toFixed(2)}</h5>
+      `);
+
+      const modal = new bootstrap.Modal(document.getElementById('modalResumen'));
+      modal.show();
+    });
+
+    $(document).on("click", "#btn-confirmar", function () {
+      // Cerrar modal de resumen
+      const modalResumen = bootstrap.Modal.getInstance(document.getElementById('modalResumen'));
+      modalResumen.hide();
+
+      // Mostrar modal de confirmación
+      const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
+      modalConfirmacion.show();
+    });
+
+    // Elimina error de no haber seleccionado películas apenas al seleccionar una
+    $(document).on("change", ".pelicula-check", function () {
+      const seleccionadas = $(".pelicula-check:checked").length;
+
+      if (seleccionadas > 0) {
+        $("#error-peliculas").hide();
+        $("#peliculas").removeClass("is-invalid");
+      } else {   // Si no hay ninguna seleccionada, muestra el error
         $("#error-peliculas").show();
         $("#peliculas").addClass("is-invalid");
       }
-    }
-  });
-
-  // Envío del formulario
-  $("#form-renta").submit(function (e) {
-    e.preventDefault();
-
-    const cliente = $("#cliente").val();
-    const ids = [];
-    $(".pelicula-check:checked").each(function () {
-      ids.push($(this).val());
-    })
-    if (ids.length === 0) {
-      $("#error-peliculas").show();
-      $("#peliculas").addClass("is-invalid");
-      return;
-    } else {
-      $("#error-peliculas").hide();
-      $("#peliculas").removeClass("is-invalid");
-    }
-    const dias = parseInt($("#dias").val());
-    const pago = $("#pago").val();
-
-    let total = 0;
-    let listaPeliculas = "";
-
-    const hoy = new Date();
-
-    if (ids.length === 0) {
-      alert("Debes seleccionar al menos una película");
-      return;
-    }
-
-    ids.forEach(id => {
-      const peli = peliculasData.find(p => p.id == id);
-
-      const fechaEstreno = new Date(peli.estreno);
-      const diferenciaDias = (hoy - fechaEstreno) / (1000 * 60 * 60 * 24);
-
-      let precio;
-
-      if (diferenciaDias <= 30) {
-        precio = peli.precios.estreno;
-      } else {
-        precio = peli.precios.normal;
-      }
-
-      total += precio * dias;
-
-      listaPeliculas += `<li>${peli.titulo} - $${precio.toFixed(2)}</li>`;
     });
 
-    $("#resumen").html(`
-      <p><strong>Cliente:</strong> ${cliente}</p>
-      <p><strong>Forma de pago:</strong> ${pago}</p>
-      <p><strong>Días:</strong> ${dias}</p>
-      <p><strong>Películas:</strong></p>
-      <ul>${listaPeliculas}</ul>
-      <hr>
-      <h5>Total a pagar: $${total.toFixed(2)}</h5>
-    `);
-
-    const modal = new bootstrap.Modal(document.getElementById('modalResumen'));
-    modal.show();
+    // Botón para ir al inicio después de confirmar
+    $(document).on("click", "#btn-ir-inicio", function () {
+      window.location.href = "../index.html";
+    });
   });
-
-  $(document).on("click", "#btn-confirmar", function () {
-    // Cerrar modal de resumen
-    const modalResumen = bootstrap.Modal.getInstance(document.getElementById('modalResumen'));
-    modalResumen.hide();
-
-    // Mostrar modal de confirmación
-    const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
-    modalConfirmacion.show();
-  });
-
-  // Elimina error de no haber seleccionado películas apenas al seleccionar una
-  $(document).on("change", ".pelicula-check", function () {
-    const seleccionadas = $(".pelicula-check:checked").length;
-
-    if (seleccionadas > 0) {
-      $("#error-peliculas").hide();
-      $("#peliculas").removeClass("is-invalid");
-    } else {   // Si no hay ninguna seleccionada, muestra el error
-      $("#error-peliculas").show();
-      $("#peliculas").addClass("is-invalid");
-    }
-  });
-
-  // Botón para ir al inicio después de confirmar
-  $(document).on("click", "#btn-ir-inicio", function () {
-    window.location.href = "../index.html";
-  });
-});
-</script>
+  </script>
 
 </body>
 </html>

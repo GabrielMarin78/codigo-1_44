@@ -1,0 +1,226 @@
+[
+  {
+    "peliculaId": 1,
+    "autor": "Juan Pérez",
+    "comentario": "Una película increíble, me mantuvo atento todo el tiempo.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 1,
+    "autor": "María López",
+    "comentario": "Muy buena, aunque el final pudo ser mejor.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 1,
+    "autor": "Carlos Ruiz",
+    "comentario": "Entretenida pero algo predecible.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 1,
+    "autor": "Ana Torres",
+    "comentario": "Excelente actuación de los protagonistas.",
+    "calificacion": 5
+  },
+
+  {
+    "peliculaId": 2,
+    "autor": "Luis Mendoza",
+    "comentario": "Visualmente impresionante, efectos de primer nivel.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 2,
+    "autor": "Sofía Herrera",
+    "comentario": "La historia es interesante pero algo lenta.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 2,
+    "autor": "Pedro Castillo",
+    "comentario": "Buen equilibrio entre acción y drama.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 2,
+    "autor": "Camila Rojas",
+    "comentario": "Me encantó, la vería otra vez.",
+    "calificacion": 5
+  },
+
+  {
+    "peliculaId": 3,
+    "autor": "Jorge Vega",
+    "comentario": "Muy divertida, ideal para ver en familia.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 3,
+    "autor": "Elena Castro",
+    "comentario": "Tiene momentos muy graciosos.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 3,
+    "autor": "Raúl Paredes",
+    "comentario": "No me convenció del todo.",
+    "calificacion": 2
+  },
+  {
+    "peliculaId": 3,
+    "autor": "Lucía Gómez",
+    "comentario": "Entretenida de principio a fin.",
+    "calificacion": 5
+  },
+
+  {
+    "peliculaId": 4,
+    "autor": "Diego Salazar",
+    "comentario": "Muy emocionante, casi lloro.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 4,
+    "autor": "Valeria Núñez",
+    "comentario": "Historia profunda y bien desarrollada.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 4,
+    "autor": "Andrés Molina",
+    "comentario": "Un poco lenta en algunas partes.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 4,
+    "autor": "Paola Jiménez",
+    "comentario": "Gran banda sonora.",
+    "calificacion": 4
+  },
+
+  {
+    "peliculaId": 5,
+    "autor": "Fernando León",
+    "comentario": "Acción pura desde el inicio.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 5,
+    "autor": "Gabriela Ortiz",
+    "comentario": "Muy entretenida, no aburre.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 5,
+    "autor": "Ricardo Flores",
+    "comentario": "Demasiado cliché.",
+    "calificacion": 2
+  },
+  {
+    "peliculaId": 5,
+    "autor": "Daniela Cruz",
+    "comentario": "Buenas escenas de acción.",
+    "calificacion": 4
+  },
+
+  {
+    "peliculaId": 6,
+    "autor": "Miguel Andrade",
+    "comentario": "Una joya cinematográfica.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 6,
+    "autor": "Natalia Silva",
+    "comentario": "Muy bien dirigida.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 6,
+    "autor": "Esteban Viteri",
+    "comentario": "Interesante pero algo compleja.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 6,
+    "autor": "Andrea Ponce",
+    "comentario": "Me encantó la fotografía.",
+    "calificacion": 5
+  },
+
+  {
+    "peliculaId": 7,
+    "autor": "Kevin Morales",
+    "comentario": "Muy buena trama, te engancha rápido.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 7,
+    "autor": "Diana Bravo",
+    "comentario": "Actuaciones sólidas.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 7,
+    "autor": "Oscar Tapia",
+    "comentario": "Algo lenta al inicio.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 7,
+    "autor": "Laura Cedeño",
+    "comentario": "Final sorprendente.",
+    "calificacion": 5
+  },
+
+  {
+    "peliculaId": 8,
+    "autor": "Patricio León",
+    "comentario": "Muy entretenida para pasar el rato.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 8,
+    "autor": "Carolina Mena",
+    "comentario": "Buena pero nada fuera de lo común.",
+    "calificacion": 3
+  },
+  {
+    "peliculaId": 8,
+    "autor": "Javier Ortiz",
+    "comentario": "Me gustaron mucho los efectos.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 8,
+    "autor": "Paula Reyes",
+    "comentario": "Historia sencilla pero efectiva.",
+    "calificacion": 4
+  },
+
+  {
+    "peliculaId": 9,
+    "autor": "Santiago Vera",
+    "comentario": "Muy emotiva, excelente guion.",
+    "calificacion": 5
+  },
+  {
+    "peliculaId": 9,
+    "autor": "Daniela Álvarez",
+    "comentario": "Me hizo reflexionar bastante.",
+    "calificacion": 4
+  },
+  {
+    "peliculaId": 9,
+    "autor": "Hugo Castillo",
+    "comentario": "No era lo que esperaba.",
+    "calificacion": 2
+  },
+  {
+    "peliculaId": 9,
+    "autor": "Valentina Ruiz",
+    "comentario": "Muy bien lograda en todos los aspectos.",
+    "calificacion": 5
+  }
+]

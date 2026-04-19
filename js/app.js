@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+  // Mostrar modal de bienvenida solo la primera vez que se visita el sitio
+  if (!localStorage.getItem("bienvenidaMostrada")) {
+    const modal = new bootstrap.Modal(document.getElementById('modalBienvenida'));
+    modal.show();
+
+    localStorage.setItem("bienvenidaMostrada", "true");
+  }
+
   setTimeout(function () {
 
     $.ajax({
@@ -30,7 +38,7 @@ $(document).ready(function () {
               <div class="card h-100 shadow">
 
                 <div class="position-relative">
-                  <img src="img/${peli.imagen}" class="card-img-top" alt="${peli.titulo}">
+                  <img src="img/${peli.imagen}" class="card-img-top img-fluid" alt="${peli.titulo}">
                   
                   <span class="badge ${etiqueta === "Estreno" ? "bg-danger" : "bg-secondary"} position-absolute top-0 start-0 m-2">
                     ${etiqueta}
@@ -45,7 +53,8 @@ $(document).ready(function () {
                     <strong>Precio (${etiqueta}):</strong> $${precio.toFixed(2)}
                   </p>
 
-                  <div class="d-flex gap-2">
+                  <div class="d-flex justify-content-center gap-4" flex-wrap>
+                    <button class="btn btn-danger"onclick="abrirTrailer('${peli.trailer}')">Tráiler</button>
                     <a href="pages/detalle.html?id=${peli.id}" class="btn btn-primary">Ver más</a>
                     <a href="pages/renta.html?id=${peli.id}" class="btn btn-success">Rentar esta película</a>
                   </div>
@@ -54,7 +63,9 @@ $(document).ready(function () {
               </div>
             </div>`;
         });
-        $("#lista-peliculas").html(html);
+        // Agregar un pequeño efecto de fade-in al cargar las películas
+        const contenedor = $("#lista-peliculas");
+        contenedor.hide().html(html).fadeIn(1000);
       },
       error: function (xhr, status, error) {
         console.error("Error al cargar las películas:", error);
@@ -69,4 +80,17 @@ $(document).ready(function () {
     });
   }, 5000); // Simula un retraso de 5 segundos para mostrar el spinner
   });
+
+  function abrirTrailer(url) {
+  const frame = document.getElementById("trailerFrame");
+
+  frame.src = url + "?autoplay=1";
+
+  const modal = new bootstrap.Modal(document.getElementById('modalTrailer'));
+  modal.show();
+
+  document.getElementById('modalTrailer').addEventListener('hidden.bs.modal', function () {
+    frame.src = "";
+  }, { once: true });
+}
   
