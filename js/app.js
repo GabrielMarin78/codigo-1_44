@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+  setTimeout(function () {
+
     $.ajax({
       url: "data/peliculas.json",
       method: "GET",
@@ -25,14 +28,28 @@ $(document).ready(function () {
           html += `
             <div class="col-md-4">
               <div class="card h-100 shadow">
-                <img src="img/${peli.imagen}" class="card-img-top" alt="${peli.titulo}">
+
+                <div class="position-relative">
+                  <img src="img/${peli.imagen}" class="card-img-top" alt="${peli.titulo}">
+                  
+                  <span class="badge ${etiqueta === "Estreno" ? "bg-danger" : "bg-secondary"} position-absolute top-0 start-0 m-2">
+                    ${etiqueta}
+                  </span>
+                </div>
+                
                 <div class="card-body">
                   <h5 class="card-title">${peli.titulo}</h5>
                   <p class="card-text">${peli.generos.join(", ")}</p>
+
                   <p class="card-text">
                     <strong>Precio (${etiqueta}):</strong> $${precio.toFixed(2)}
                   </p>
-                  <a href="pages/detalle.html?id=${peli.id}" class="btn btn-primary">Ver más</a>
+
+                  <div class="d-flex gap-2">
+                    <a href="pages/detalle.html?id=${peli.id}" class="btn btn-primary">Ver más</a>
+                    <a href="pages/renta.html?id=${peli.id}" class="btn btn-success">Rentar esta película</a>
+                  </div>
+
                 </div>
               </div>
             </div>`;
@@ -50,5 +67,6 @@ $(document).ready(function () {
         `);
       }
     });
+  }, 5000); // Simula un retraso de 5 segundos para mostrar el spinner
   });
   
